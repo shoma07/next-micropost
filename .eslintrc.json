@@ -43,7 +43,7 @@
       2,
       { "assertionStyle": "never" }
     ],
-    "jsx-a11y/label-has-associated-control": [2, { "assert": "both" }],
+    "jsx-a11y/label-has-associated-control": [0, { "assert": "both" }],
     "no-restricted-syntax": [
       2,
       {

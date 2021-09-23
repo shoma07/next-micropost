@@ -1,11 +1,20 @@
 version: "3"
 
 services:
+  db:
+    image: mysql:5.7.35
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
   app:
     build:
       context: .
       args:
         - NEXT_BUILD=0
+    environment:
+      - DATABASE_URL=mysql://root:root@db/micropost
+      - SECRET_COOKIE_PASSWORD=1e5ebb37d8f8d7f51a1b7ddf21df1385
     volumes:
       - .:/usr/src/app
       - /usr/src/app/.next
@@ -13,3 +22,9 @@ services:
     ports:
       - 3000:3000
     command: yarn dev
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+    driver: local
