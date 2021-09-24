@@ -1,6 +1,11 @@
 This repository is implementation of rails tutorial in next.js
 
-## 1. init next.js
+## run
+
+```sh
+$ docker-compose up
+```
+## initialize next.js
 
 ```sh
 $ mkdir my-app
