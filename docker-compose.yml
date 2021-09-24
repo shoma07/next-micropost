@@ -7,6 +7,11 @@ services:
       - db-data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
+  redis:
+    image: redis:6.2.5
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
   app:
     build:
       context: .
@@ -14,6 +19,7 @@ services:
         - NEXT_BUILD=0
     environment:
       - DATABASE_URL=mysql://root:root@db/micropost
+      - SESSION_STORE_URL=redis://redis:6379/0
       - SECRET_COOKIE_PASSWORD=1e5ebb37d8f8d7f51a1b7ddf21df1385
     volumes:
       - .:/usr/src/app
@@ -24,7 +30,10 @@ services:
     command: yarn dev
     depends_on:
       - db
+      - redis
 
 volumes:
   db-data:
+    driver: local
+  redis-data:
     driver: local

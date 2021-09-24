@@ -1,19 +1,15 @@
 import type { NextApiResponse } from "next";
-import {
-  baseHandler,
-  CustomNextApiRequest,
-} from "../../../lib/middlewares/baseHandler";
+import { app, CustomNextApiRequest } from "../../../lib/middlewares/app";
 
 type ResponseData = Readonly<{
   success: boolean;
 }>;
 
 /* eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types */
-const handler = baseHandler.post(
+const handler = app.post(
   /* eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types */
-  (req: CustomNextApiRequest, res: NextApiResponse<ResponseData>) => {
-    const { body } = req;
-    console.log(req.body);
+  async (req: CustomNextApiRequest, res: NextApiResponse<ResponseData>) => {
+    // const { body } = req;
     res.status(201).json({ success: true });
   }
 );
