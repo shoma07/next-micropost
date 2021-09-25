@@ -10,7 +10,7 @@ type Props = Readonly<{
   onSubmit: (data: FormData) => void;
 }>;
 
-export const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
+export const SignupForm: React.FC<Props> = ({ onSubmit }: Props) => {
   const { register, handleSubmit } = useForm<FormData>();
 
   /* eslint-disable react/jsx-props-no-spreading */
@@ -19,9 +19,9 @@ export const SignUpForm: React.FC<Props> = ({ onSubmit }: Props) => {
       <label htmlFor="email">Email: </label>
       <input {...register("email", { required: true })} id="email" />
       <br />
-      <label htmlFor="signInFormPassword">Password: </label>
+      <label htmlFor="password">Password: </label>
       <input
-        id="signInFormPassword"
+        id="password"
         type="password"
         {...register("password", { required: true })}
       />

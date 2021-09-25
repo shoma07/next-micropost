@@ -24,7 +24,7 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/.next
-      - /usr/src/app/node_modules
+      - node-data:/usr/src/app/node_modules
     ports:
       - 3000:3000
     command: yarn dev
@@ -36,4 +36,6 @@ volumes:
   db-data:
     driver: local
   redis-data:
+    driver: local
+  node-data:
     driver: local

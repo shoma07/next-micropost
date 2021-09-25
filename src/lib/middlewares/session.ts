@@ -1,3 +1,4 @@
+import type { NextApiResponse } from "next";
 import session from "express-session";
 import { createClient } from "redis";
 import connectRedis from "connect-redis";
@@ -21,3 +22,27 @@ export const connectSession = () =>
     },
     proxy: true,
   });
+
+/* eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types */
+export const regenerateSessionId = (req: CustomNextApiRequest): void => {
+  const { userId } = req.session;
+
+  req.session.regenerate((error: unknown) => {
+    if (error) {
+      return;
+    }
+
+    req.session.userId = userId;
+  });
+};
+
+export const resetSession = (
+  /* eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types */
+  req: CustomNextApiRequest,
+  /* eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types */
+  res: NextApiResponse
+): void => {
+  req.session.regenerate(() => {
+    res.end();
+  });
+};
