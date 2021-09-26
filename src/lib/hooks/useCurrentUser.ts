@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import useSWR from "swr";
 
 type HookArgs = Readonly<{
   require: boolean;
@@ -14,13 +14,13 @@ type HookReturn = Readonly<{
 export const useCurrentUser = (args: HookArgs): HookReturn => {
   const router = useRouter();
   const { require } = args;
-  const { data, error } = useSWR('/api/users/me');
+  const { data, error } = useSWR("/api/users/me");
 
   useEffect(() => {
     if (require && error) {
-      router.push('/');
+      router.push("/");
     }
-  }, [require, error]);
+  }, [router, require, error]);
 
   return { data, error };
 };

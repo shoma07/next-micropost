@@ -5,9 +5,7 @@ import { useCurrentUser } from "../../lib/hooks/useCurrentUser";
 const UsersSigninPage: NextPage = () => {
   useCurrentUser({ require: true });
 
-  return (
-    <></>
-  );
+  return <></>;
 };
 
 export default UsersSigninPage;
