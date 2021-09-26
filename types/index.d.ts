@@ -26,3 +26,7 @@ type GetCsrfResponse = Readonly<{
 type GetUserResponse = Readonly<{
   email: string;
 }>;
+
+type GetPostsResponse = Readonly<{
+  posts: ReadonlyArray<import("@prisma/client").Post>;
+}>;
